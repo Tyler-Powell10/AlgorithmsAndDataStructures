@@ -29,14 +29,11 @@ public class PalindromeApp {
 
 // i think this is where we actually do the sorting of characters and checking if it is a palendrome 
 class isPalindromeSTACK {
-// for stacks all we have to do is put each character into the stack individually using push
-// after they are in the stack we can pop each out individually, this will give us the same thing backwards
-// we can create a string variable holding the input being put in and then a string value holding the output of all the pops
-// then all we have to do is compare these string values and check if they are the same 
-// we can also print the variable backwards and show that it is the same 
+
 }
 
 class isPalindromeQUEUE {
+// for queues
 
 }
   
