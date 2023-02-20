@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.Stackx;
+import java.Queue;
 
 public class PalindromeApp {
     public static void main(String[] args) {
@@ -23,6 +25,21 @@ public class PalindromeApp {
 
         System.out.println("New Input: " + strippedInput);
 
+        boolean isPalindromeUsingQueue = isPalindromeQUEUE.checkPalindrome(strippedInput);
+        boolean isPalindromeUsingStack = isPalindromeSTACK.checkPalindrome(strippedInput);
+
+        if (isPalindromeUsingQueue) {
+            System.out.println("Using a queue, we confirmed the input is a palindrome");
+        } else {
+            System.out.println("Using a queue, we confirmed the input is not a palindrome");
+        }
+
+        if (isPalindromeUsingStack) {
+            System.out.println("using a stack, we confirmed the input is a palindrome");
+        } else {
+            System.out.println("using a stack, we confirmed the input is not a palindrome");
+        }
+
         scanner.close();
     }
 }
@@ -33,12 +50,41 @@ public class PalindromeApp {
 // we can then pop a character from the stack and get a character from the queue - comparing each individually
 // if they are not equal then its not a palendrome
 // return true of false
-class isPalindromeSTACK {
-
+class isPalindromeQUEUE {
+    public static boolean checkPalindrome(String str) {
+        Queue queue = new Queue(str.length());
+        // Add each character of the string to the queue
+        for (int i = 0; i < str.length(); i++) {
+            queue.insert(str.charAt(i));
+        }
+        // Remove each character from the queue and compare it to the corresponding character in the original string
+        for (int i = 0; i < str.length(); i++) {
+            char c1 = str.charAt(i);
+            char c2 = queue.remove();
+            if (c1 != c2) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
-class isPalindromeQUEUE {
-// for queues
-
+class isPalindromeSTACK {
+    public static boolean checkPalindrome(String str) {
+        StackX stack = new StackX(str.length());
+        // Add each character of the string to the stack
+        for (int i = 0; i < str.length(); i++) {
+            stack.push(str.charAt(i));
+        }
+        // Pop each character from the stack and compare it to the corresponding character in the original string
+        for (int i = 0; i < str.length(); i++) {
+            char c1 = str.charAt(i);
+            char c2 = stack.pop();
+            if (c1 != c2) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
   
