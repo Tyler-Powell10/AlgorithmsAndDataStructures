@@ -22,5 +22,10 @@ public class PalindromeApp {
         strippedInput = strippedInput.toLowerCase();
 
         System.out.println("New Input: " + strippedInput);
+
+        scanner.close();
     }
 }
+
+
+  
