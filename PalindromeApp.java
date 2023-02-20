@@ -28,6 +28,11 @@ public class PalindromeApp {
 }
 
 // i think this is where we actually do the sorting of characters and checking if it is a palendrome 
+// we can input each character into the queue
+// then push each character to the stack
+// we can then pop a character from the stack and get a character from the queue - comparing each individually
+// if they are not equal then its not a palendrome
+// return true of false
 class isPalindromeSTACK {
 
 }
