@@ -1,4 +1,6 @@
-//package stacksandqueues;
+package stacksandqueues;
+
+import static java.lang.System.exit;
 
 class StackX {
 
@@ -25,13 +27,21 @@ class StackX {
 //--------------------------------------------------------------
 
     public void push(char j) // put item on top of stack
-    {
+    {   
+        if(isFull()){
+            System.out.println("The STACK Is Full create a new one");
+            exit(0);
+        }
         stackArray[++top] = j;     // increment top, insert item
     }
 //--------------------------------------------------------------
 
     public char pop() // take item from top of stack
-    {
+    {   
+        if(isEmpty()){
+            System.out.println("The STACK Is Empty");
+            exit(0);
+        }
         return stackArray[top--];  // access item, decrement top
     }
 //--------------------------------------------------------------
@@ -53,4 +63,8 @@ class StackX {
         return (top == maxSize - 1);
     }
 //--------------------------------------------------------------
+
+    private void Exit(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }  // end class StackX
