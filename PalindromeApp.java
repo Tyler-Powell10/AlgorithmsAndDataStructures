@@ -40,20 +40,20 @@ public class PalindromeApp {
     // return true of false
 
     public static boolean isPalindromeQUEUE(String str) {
-        Queue queue = new Queue(str.length());
+        Queue queue = new Queue(str.length());//--------------1
         // Add each character of the string to the queue
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); i++) {//--------------N
             queue.insert(str.charAt(i));
         }
         // Remove each character from the queue and compare it to the corresponding character in the original string
-        for (int i =str.length()-1 ; i >=0; i--) {
+        for (int i =str.length()-1 ; i >=0; i--) { //--------------N
             char c1 = str.charAt(i);
-            char c2 = queue.remove();
+            char c2 = queue.remove();              //-------------N
             if (c1 != c2) {
-                return false;
+                return false;                       // N/2
             }
         }
-        return true;
+        return true;                                 //------------ 1
     }
 
     public static boolean isPalindromeSTACK(String str) {
