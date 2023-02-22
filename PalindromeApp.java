@@ -44,47 +44,43 @@ public class PalindromeApp {
     }
 }
 
-// i think this is where we actually do the sorting of characters and checking if it is a palendrome 
-// we can input each character into the queue
-// then push each character to the stack
-// we can then pop a character from the stack and get a character from the queue - comparing each individually
 // if they are not equal then its not a palendrome
-// return true of false
 class isPalindromeQUEUE {
     public static boolean checkPalindrome(String str) {
         Queue queue = new Queue(str.length());
         // Add each character of the string to the queue
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); i++) {                //N
             queue.insert(str.charAt(i));
         }
         // Remove each character from the queue and compare it to the corresponding character in the original string
-        for (int i = 0; i < str.length(); i++) {
-            char c1 = str.charAt(i);
-            char c2 = queue.remove();
-            if (c1 != c2) {
+        for (int i = 0; i < str.length(); i++) {                //N
+            char c1 = str.charAt(i);                            //N
+            char c2 = queue.remove();                           //N
+            if (c1 != c2) {                                     //1/2N
                 return false;
             }
         }
-        return true;
+        return true;                                            //1/2N
     }
+                                                                // 5N
 }
 
 class isPalindromeSTACK {
     public static boolean checkPalindrome(String str) {
         StackX stack = new StackX(str.length());
         // Add each character of the string to the stack
-        for (int i = 0; i < str.length(); i++) {
+        for (int i = 0; i < str.length(); i++) {        //N
             stack.push(str.charAt(i));
         }
         // Pop each character from the stack and compare it to the corresponding character in the original string
-        for (int i = 0; i < str.length(); i++) {
-            char c1 = str.charAt(i);
+        for (int i = 0; i < str.length(); i++) {        //N
+            char c1 = str.charAt(i);                    
             char c2 = stack.pop();
-            if (c1 != c2) {
+            if (c1 != c2) {                             //1/2N
                 return false;
             }
         }
-        return true;
+        return true;                                    //1/2N
     }
-}
+}                                                       // = 5N
   
