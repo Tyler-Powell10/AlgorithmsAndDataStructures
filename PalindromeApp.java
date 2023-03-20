@@ -1,4 +1,4 @@
-package stacksandqueues;
+// package stacksandqueues;
 
 import java.util.Scanner;
 
