@@ -1,22 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package stacksandqueues;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*
- * @author Frank NKurunziza, Nicholas Phillips, and Tyler Powell
- * 
- * The purpose of this code is to prompt the user to input a number and generate a Hailstone sequence using that number. 
- * It creates an ArrayList to store the sequence and a Hailstone object to generate and manipulate the sequence. 
- * The code then outputs the Hailstone sequence and the length of the longest sequence generated.
+/**
+ *
+ * @author Frank NKurunziza
  */
-
-//This class provides a main method to test the Hailstone sequence generator.
 public class HailstoneTest {
     public static void main(String[] args) {
-        ArrayList<Integer> hailList=new ArrayList<>(); // Create a new ArrayList to store Hailstone sequence
+        ArrayList<ArrayList<Integer>> list=new ArrayList<>();
         Scanner input=new Scanner(System.in);
-        System.out.println("Enter the largest number: ");
+        System.out.println("Input a number from 1 to 10000");
+        System.out.println("--------------------------------");
         int hailNumber=input.nextInt();
-        Hailstone hail=new Hailstone(hailNumber,hailList); // Create a new Hailstone object with user input and hailList
-        System.out.println("HailStone List: "+hail.hailNumber+" Longest sequence: "+hail.hailNumber.size() + " Starting with: " + hail.hailNumber.get(0));
+        
+        for(int i=1;i<=hailNumber;i++){   
+            ArrayList<Integer> hailList=new ArrayList<>();
+//            System.out.println("i: "+i);
+            Hailstone hail=new Hailstone(i,hailList);
+            list.add(hailList);
+//            System.out.println("HailStone List: "+hail.getHailstoneSeq()+" Longest sequence: "+hail.hailNumber.size());
+        }
+        int longSeq=0;
+        int max=0;
+        
+        for(int i=0;i<list.size();i++){
+            ArrayList<Integer> currSeq=list.get(i);
+            if(currSeq.size() > max){
+                longSeq=i;
+                max=currSeq.size();
+            }
+        }
+            System.out.println("Longest sequence was "+max+" starting with : "+list.get(longSeq).get(0));
+            for(int i=0;i<list.get(longSeq).size();i++){
+                System.out.println(""+list.get(longSeq).get(i));
+            }
     }
 }
