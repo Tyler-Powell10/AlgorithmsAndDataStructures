@@ -3,11 +3,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+// create the nodes
 class Node {
     Node left;
     Node right;
     int value;
 
+    // set values 
     public Node(int value) {
         this.left = null;
         this.right = null;
@@ -15,13 +17,17 @@ class Node {
     }
 }
 
+// create the binary search tree
 public class BinarySearchTree {
+    //instanciate the root node
     private Node root;
 
+    // set the root to null
     public BinarySearchTree() {
         root = null;
     }
 
+    // method for inserting the integer
     public Node insert(Node node, int value) {
         if (node == null) {
             return new Node(value);
@@ -34,6 +40,7 @@ public class BinarySearchTree {
         return node;
     }
 
+    // method for in order traversals
     public void inorderTraversal(Node node, List<Integer> list) {
         if (node != null) {
             inorderTraversal(node.left, list);
@@ -42,6 +49,7 @@ public class BinarySearchTree {
         }
     }
 
+    // method for quicksorting 
     public static List<Integer> quicksort(List<Integer> list) {
         if (list.size() <= 1) {
             return list;
@@ -68,6 +76,8 @@ public class BinarySearchTree {
 
     public static void main(String[] args) {
         // Generate a random dataset of 100 integers ranging from 1-100
+
+        //! changing this for testing 
         List<Integer> dataset = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i < 100; i++) {
@@ -95,7 +105,7 @@ public class BinarySearchTree {
 
         // Compare the two sorted datasets and print the processing times
         System.out.println("Sorted dataset 1 (quicksort within binary search tree): " + sortedDataset1);
-        System.out.println("Sorted dataset 2 (traditional quicksort): " + sortedDataset3);
+        System.out.println("Sorted dataset 2 (our quicksort implementation): " + sortedDataset2);
         System.out.println("Processing time for quicksort within binary search tree: " + timeElapsed1 + " ns");
         System.out.println("Processing time for traditional quicksort: " + timeElapsed2 + " ns");
     }
