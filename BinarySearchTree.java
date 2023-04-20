@@ -75,38 +75,44 @@ public class BinarySearchTree {
     }
 
     public static void main(String[] args) {
-        // Generate a random dataset of 100 integers ranging from 1-100
-
-        //! changing this for testing 
-        List<Integer> dataset = new ArrayList<>();
-        Random random = new Random();
-        for (int i = 0; i < 100; i++) {
-            dataset.add(random.nextInt(100) + 1);
+        int numberOfRuns = 1000;
+        long totalTimeElapsedQuickSortBST = 0;
+        long totalTimeElapsedTraditionalQuickSort = 0;
+    
+        for (int run = 0; run < numberOfRuns; run++) {
+            // Generate a random dataset of 30 integers ranging from 1-100
+            List<Integer> dataset = new ArrayList<>();
+            Random random = new Random();
+            for (int i = 0; i < 5000; i++) {
+                dataset.add(random.nextInt(100) + 1);
+            }
+    
+            // QuickSort within binary search tree
+            BinarySearchTree bst = new BinarySearchTree();
+            long startTime1 = System.nanoTime();
+            for (int value : dataset) {
+                bst.root = bst.insert(bst.root, value);
+            }
+            List<Integer> sortedDataset1 = new ArrayList<>();
+            bst.inorderTraversal(bst.root, sortedDataset1);
+            long endTime1 = System.nanoTime();
+            long timeElapsed1 = endTime1 - startTime1;
+            totalTimeElapsedQuickSortBST += timeElapsed1;
+    
+            // Traditional quicksort
+            List<Integer> sortedDataset2 = new ArrayList<>(dataset);
+            long startTime2 = System.nanoTime();
+            sortedDataset2 = quicksort(sortedDataset2);
+            long endTime2 = System.nanoTime();
+            long timeElapsed2 = endTime2 - startTime2;
+            totalTimeElapsedTraditionalQuickSort += timeElapsed2;
         }
-
-        // QuickSort within binary search tree
-        BinarySearchTree bst = new BinarySearchTree();
-        long startTime1 = System.nanoTime();
-        for (int value : dataset) {
-            bst.root = bst.insert(bst.root, value);
-        }
-        List<Integer> sortedDataset1 = new ArrayList<>();
-        bst.inorderTraversal(bst.root, sortedDataset1);
-        List<Integer> sortedDataset2 = quicksort(dataset);
-        long endTime1 = System.nanoTime();
-        long timeElapsed1 = endTime1 - startTime1;
-
-        // Traditional quicksort
-        List<Integer> sortedDataset3 = new ArrayList<>(dataset);
-        long startTime2 = System.nanoTime();
-        Collections.sort(sortedDataset3);
-        long endTime2 = System.nanoTime();
-        long timeElapsed2 = endTime2 - startTime2;
-
-        // Compare the two sorted datasets and print the processing times
-        System.out.println("Sorted dataset 1 (quicksort within binary search tree): " + sortedDataset1);
-        System.out.println("Sorted dataset 2 (our quicksort implementation): " + sortedDataset2);
-        System.out.println("Processing time for quicksort within binary search tree: " + timeElapsed1 + " ns");
-        System.out.println("Processing time for traditional quicksort: " + timeElapsed2 + " ns");
+    
+        long averageTimeElapsedQuickSortBST = totalTimeElapsedQuickSortBST / numberOfRuns;
+        long averageTimeElapsedTraditionalQuickSort = totalTimeElapsedTraditionalQuickSort / numberOfRuns;
+    
+        System.out.println("Average processing time for quicksort within binary search tree: " + averageTimeElapsedQuickSortBST + " ns");
+        System.out.println("Average processing time for traditional quicksort: " + averageTimeElapsedTraditionalQuickSort + " ns");
     }
+    
 }
