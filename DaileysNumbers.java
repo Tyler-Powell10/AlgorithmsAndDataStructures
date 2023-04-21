@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 class TreeNode {
     int value;
@@ -51,6 +52,40 @@ public class DaileysNumbers {
         return result;
     }
 
+    public static void countOccurrences(TreeNode node, int[] counts) {
+        if (node == null) {
+            return;
+        }
+    
+        if (node.value < counts.length) {
+            counts[node.value]++;
+        }
+    
+        countOccurrences(node.left, counts);
+        countOccurrences(node.right, counts);
+    }
+    
+
+    public static boolean[] missingNumbers(TreeNode node, int maxNumber) {
+        boolean[] present = new boolean[maxNumber + 1];
+        missingNumbersHelper(node, present);
+        return present;
+    }
+    
+    public static void missingNumbersHelper(TreeNode node, boolean[] present) {
+        if (node == null) {
+            return;
+        }
+    
+        if (node.value < present.length) {
+            present[node.value] = true;
+        }
+    
+        missingNumbersHelper(node.left, present);
+        missingNumbersHelper(node.right, present);
+    }
+    
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the tree depth (between 2 and 26): ");
@@ -63,7 +98,8 @@ public class DaileysNumbers {
         System.out.println("1. Preorder");
         System.out.println("2. Inorder");
         System.out.println("3. Postorder");
-        System.out.println("4. Exit");
+        System.out.println("4. Missing numbers and counts");
+        System.out.println("5. Exit");
 
         int choice;
         do {
@@ -81,13 +117,33 @@ public class DaileysNumbers {
                     System.out.println("Postorder traversal: " + postOrder(root));
                     break;
                 case 4:
+                    int maxNumber = root.right.value;
+                    int[] counts = new int[maxNumber + 1];
+                    countOccurrences(root, counts);
+
+                    System.out.println("Counts:");
+                    for (int i = 1; i <= maxNumber; i++) {
+                        System.out.println(i + ": " + counts[i]);
+                    }
+                    boolean[] present = missingNumbers(root, maxNumber);
+                    System.out.print("Missing: ");
+                    for (int i = 1; i <= maxNumber; i++) {
+                        if (!present[i]) {
+                            System.out.print(i + " ");
+                        }
+                    }
+                    System.out.println();
+                    break;
+                case 5:
                     System.out.println("Exiting...");
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
-        } while (choice != 4);
+        } while (choice != 5);
 
         scanner.close();
     }
 }
+
+                   
