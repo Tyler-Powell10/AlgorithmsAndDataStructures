@@ -39,37 +39,47 @@ public class PalindromeApp {
     // if they are not equal then its not a palendrome
     // return true of false
 
-    public static boolean isPalindromeQUEUE(String str) {
-        Queue queue = new Queue(str.length());//--------------1
+
+// if they are not equal then its not a palendrome
+class isPalindromeQUEUE {
+    public static boolean checkPalindrome(String str) {
+        Queue queue = new Queue(str.length());
         // Add each character of the string to the queue
-        for (int i = 0; i < str.length(); i++) {//--------------N
+        for (int i = 0; i < str.length(); i++) {                //N
             queue.insert(str.charAt(i));
         }
         // Remove each character from the queue and compare it to the corresponding character in the original string
-        for (int i =str.length()-1 ; i >=0; i--) { //--------------N
-            char c1 = str.charAt(i);
-            char c2 = queue.remove();              //-------------N
-            if (c1 != c2) {
-                return false;                       // N/2
+        for (int i = 0; i < str.length(); i++) {                //N
+            char c1 = str.charAt(i);                            //N
+            char c2 = queue.remove();                           //N
+            if (c1 != c2) {                                     //1/2N
+                return false;
             }
         }
-        return true;                                 //------------ 1
+        return true;                                            //1/2N
     }
+                                                                // 5N
+}
+
 
     public static boolean isPalindromeSTACK(String str) {
         StackX stack = new StackX(4);                   //--------------1
         // Add each character of the string to the stack
-        for (int i = 0; i < str.length(); i++) {        //--------------N
+        for (int i = 0; i < str.length(); i++) {        //N
             stack.push(str.charAt(i));
         }
         // Pop each character from the stack and compare it to the corresponding character in the original string
-        for (int i = 0; i < str.length(); i++) {        //--------------N
-            char c1 = str.charAt(i);
-            char c2 = stack.pop();                      //-------------N
-            if (c1 != c2) {
-                return false;                           // N/2
+        for (int i = 0; i < str.length(); i++) {        //N
+            char c1 = str.charAt(i);                    
+            char c2 = stack.pop();
+            if (c1 != c2) {                             //1/2N
+                return false;
             }
         }
-        return true;                                    //------------ 1
+        return true;                                    //1/2N
     }
-}
+}                                                       // = 5N
+  
+
+   
+
